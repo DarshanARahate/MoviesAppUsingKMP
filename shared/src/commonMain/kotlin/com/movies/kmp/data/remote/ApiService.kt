@@ -8,10 +8,9 @@ import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import io.ktor.client.request.url
 
-
 const val BASE_URL = "https://www.omdbapi.com/"
 const val API_KEY = "apikey"
-const val API_KEY_VALUE = ""
+const val API_KEY_VALUE = "c375647b"
 const val SEARCH_KEY = "s"
 const val DETAILS_KEY = "i"
 

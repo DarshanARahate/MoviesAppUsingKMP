@@ -35,10 +35,12 @@ kotlin {
         commonMain.dependencies {
             // put your Multiplatform dependencies here
             implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.logging)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
 
             implementation(libs.koin.core)
+            implementation(libs.slf4j.simple)
             implementation(libs.androidx.lifecycle.viewmodel)
 
             implementation(libs.kotlinx.coroutines.core)
@@ -54,14 +56,12 @@ kotlin {
 
 android {
     namespace = "com.movies.kmp.shared"
-//    compileSdk = libs.versions.android.compileSdk.get().toInt()
-    compileSdk = 35
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
     defaultConfig {
-//        minSdk = libs.versions.android.minSdk.get().toInt()
-        minSdk = 24
+        minSdk = libs.versions.android.minSdk.get().toInt()
     }
 }

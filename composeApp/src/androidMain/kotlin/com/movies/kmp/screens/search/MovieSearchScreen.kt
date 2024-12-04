@@ -1,5 +1,6 @@
 package com.movies.kmp.screens.search
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -29,7 +30,11 @@ import com.movies.kmp.ui.viewmodel.MovieViewModel
 import com.skydoves.landscapist.glide.GlideImage
 
 @Composable
-fun MovieSearchScreen(modifier: Modifier = Modifier, viewModel: MovieViewModel) {
+fun MovieSearchScreen(
+    modifier: Modifier = Modifier,
+    viewModel: MovieViewModel,
+    onClick: (String) -> Unit
+) {
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     var query by rememberSaveable {
@@ -46,7 +51,8 @@ fun MovieSearchScreen(modifier: Modifier = Modifier, viewModel: MovieViewModel) 
             colors = TextFieldDefaults.textFieldColors(
                 unfocusedLabelColor = Color.Transparent,
                 focusedIndicatorColor = Color.Transparent
-            )
+            ),
+            placeholder = { Text(text = "Search Movie") }
         )
     }) {
         if (uiState.isLoading) {
@@ -84,6 +90,9 @@ fun MovieSearchScreen(modifier: Modifier = Modifier, viewModel: MovieViewModel) 
                                 horizontal = 16.dp,
                                 vertical = 4.dp
                             )
+                            .clickable {
+                                onClick.invoke(it.imdbID)
+                            }
                             .fillMaxWidth()
                     ) {
                         GlideImage(
@@ -94,7 +103,7 @@ fun MovieSearchScreen(modifier: Modifier = Modifier, viewModel: MovieViewModel) 
                         Spacer(modifier = Modifier.height(12.dp))
                         Text(
                             text = it.title,
-                            style = MaterialTheme.typography.h4
+                            style = MaterialTheme.typography.h5
                         )
                     }
                 }

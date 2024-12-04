@@ -40,7 +40,9 @@ class MovieViewModel(private val getMoviesUsecase: GetMoviesUsecase) : ViewModel
         val response = getMoviesUsecase(search)
 
         if (response.isSuccess) {
-            UiState(data = response.getOrThrow())
+            _uiState.update {
+                UiState(data = response.getOrThrow())
+            }
         } else {
             _uiState.update {
                 UiState(error = response.exceptionOrNull()?.message.toString())
