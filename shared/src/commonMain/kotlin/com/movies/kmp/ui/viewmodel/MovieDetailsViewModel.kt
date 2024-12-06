@@ -2,6 +2,7 @@ package com.movies.kmp.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.movies.kmp.common
 import com.movies.kmp.domain.model.moviedetails.MovieDetails
 import com.movies.kmp.domain.usecases.GetMovieDetailsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,7 +14,7 @@ class MovieDetailsViewModel(
     private val getMovieDetailsUseCase: GetMovieDetailsUseCase
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(DetailsUiState())
-    val uiState = _uiState.asStateFlow()
+    val uiState = _uiState.asStateFlow().common()
 
     fun getMovieDetails(imdbId: String) {
         viewModelScope.launch {

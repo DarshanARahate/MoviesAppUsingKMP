@@ -1,15 +1,17 @@
 import SwiftUI
+import Shared
 
 @main
 struct iOSApp: App {
 
     init() {
-        SetupKoinDiKt.doInitKoin()
+        SetupKoinDIKt.doInitKoin()
+    
     }
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MovieSearchView()
         }
     }
 }
